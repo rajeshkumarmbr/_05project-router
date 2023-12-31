@@ -1,9 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import Entities from '../../html_entities.json';
+import DOMPurify from 'dompurify';
+ 
 
 
 export default function Footer() {
+    const and = DOMPurify.sanitize(Entities.punctuation[4].entity);
+    // console.log(Entities.arrows[10].entity);
+
     return (
         <footer className="bg-white border-y">
             <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
@@ -63,7 +68,10 @@ export default function Footer() {
                                 </li>
                                 <li>
                                     <Link to="#" className="hover:underline">
-                                        Terms &amp; Conditions
+                                        Terms  <div dangerouslySetInnerHTML={{ __html: and }} /> Conditions 
+                                            {/* {Entities.arrows[10].entity} */}
+                                        {/* <div dangerouslySetInnerHTML= { { __html : Entities.arrows[20].entity } }> </div> */}
+                                        
                                     </Link>
                                 </li>
                             </ul>
@@ -73,7 +81,7 @@ export default function Footer() {
                 <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
                 <div className="sm:flex sm:items-center sm:justify-between">
                     <span className="text-sm text-gray-500 sm:text-center">
-                        © 2023
+                        &copy; 2023
                         <Link to="https://hiteshchoudhary.com/" className="hover:underline">
                         hiteshchoudhary 
                         </Link>
